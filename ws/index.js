@@ -25,6 +25,44 @@ app.get('/devices/:id', function(req, res, next) {
         res.send(rta);
     });
 });
+
+app.get('/ws/devices', function(req, res, next) {
+    var valorRecibido = req.query.filter; //extraigo el query parameter del GET 
+    var valoresValidos = ['0', '1', '2']; //Creo un array para validacion del parametro
+    var stringBusqueda = ""; //String para la busqueda sql
+
+    if (valorRecibido in valoresValidos) //Evitemos cualquier problemita con SQL....
+    {
+        if (valorRecibido === '0')
+        {
+            stringBusqueda = 'SELECT * FROM Devices';
+        }
+        else if (valorRecibido === '1')
+        {
+            stringBusqueda = 'SELECT * FROM Devices WHERE type=0';
+        }
+        else if (valorRecibido === '2')
+        {
+            stringBusqueda = 'SELECT * FROM Devices WHERE type=1';
+        }
+    }
+    else
+    {
+        res.send("No se pudo encontrar el valor enviado").status(404);
+    }
+    mysql.query(stringBusqueda, function(err, rta, field) {
+        if (err) {
+            res.send(err).status(400);
+            return;
+        }
+        res.send(rta);
+    });
+
+
+
+});
+
+
 app.post('/devices', function(req, res, next) {
 
     console.log(req.body);
