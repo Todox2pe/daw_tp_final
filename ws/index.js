@@ -31,7 +31,7 @@ app.get('/ws/devices', function(req, res, next) {
     var valoresValidos = ['0', '1', '2']; //Creo un array para validacion del parametro
     var stringBusqueda = ""; //String para la busqueda sql
 
-    if (valorRecibido in valoresValidos) //Evitemos cualquier problemita con SQL....
+    if (valoresValidos.includes(valorRecibido)) //Evitemos cualquier problemita con SQL....
     {
         if (valorRecibido === '0')
         {
@@ -45,20 +45,19 @@ app.get('/ws/devices', function(req, res, next) {
         {
             stringBusqueda = 'SELECT * FROM Devices WHERE type=1';
         }
+
+        mysql.query(stringBusqueda, function(err, rta, field) {
+            if (err) {
+                res.send(err).status(400);
+                return;
+            }
+            res.send(rta);
+        });
     }
     else
     {
         res.send("No se pudo encontrar el valor enviado").status(404);
     }
-    mysql.query(stringBusqueda, function(err, rta, field) {
-        if (err) {
-            res.send(err).status(400);
-            return;
-        }
-        res.send(rta);
-    });
-
-
 
 });
 
