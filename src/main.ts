@@ -79,10 +79,31 @@ class Main implements GETResponseListener, EventListenerObject, POSTResponseList
     handleEvent(evt:Event):void
     {
         let sw: HTMLElement = this.myf.getElementByEvent(evt);
-        console.log("click en device:"+sw.id);
 
+        //Defino e inicializo las URLs para realizar los requests GET al filtrar dispositivos
+        let urlFiltradotodos:string = 'ws/devices?filter=0';
+        let urlFiltradoLamparas:string = 'ws/devices?filter=1';
+        let urlFiltradoPersianas:string = 'ws/devices?filter=2';
+
+        if (sw.id === "botonTodos") 
+        {
+            console.log("Mostrando todos los dispositivos...");
+            this.myf.requestGET(urlFiltradotodos, this);
+        }
+        else if (sw.id === "botonLamparas")
+        {
+            console.log("Mostrando solo las lamparas...");
+            this.myf.requestGET(urlFiltradoLamparas, this);
+        }
+        else if (sw.id === "botonPersianas")
+        {
+            console.log("Mostrando solo las persianas...");
+            this.myf.requestGET(urlFiltradoPersianas, this);
+        }
+        else {
         let data:object = {"id":sw.id,"state":this.view.getSwitchStateById(sw.id)};
         this.myf.requestPOST("devices",data,this);
+        }
     }
 
     handleGETResponse(status:number,response:string):void{
@@ -108,6 +129,19 @@ class Main implements GETResponseListener, EventListenerObject, POSTResponseList
         }
     }
 
+    /**
+     * agregarConfigClick Pasa cada string del array de IDs de elementos HTML como parametro para el
+     * metodo configClick de MyFramework.ts
+     * @param arr_ids array con strings de ids de los elementos HTML
+     */
+    agregarConfigClick(arr_ids:string[]):void
+    {
+        for (let IdElemento of arr_ids)
+        {
+            this.myf.configClick(IdElemento, this);
+        }
+    }
+
     main():void 
     { 
       this.myf = new MyFramework();
@@ -115,6 +149,14 @@ class Main implements GETResponseListener, EventListenerObject, POSTResponseList
       this.view = new ViewMainPage(this.myf);
 
       this.myf.requestGET("devices",this);
+
+      //Declaro e inicializo un array con los ids de los botones utilizados para filtrar
+      let arrayIdElementos:string[];
+      arrayIdElementos = ["botonTodos", "botonLamparas", "botonPersianas"];
+
+      this.agregarConfigClick(arrayIdElementos);
+    
+
     } 
 } 
  

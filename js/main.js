@@ -55,9 +55,26 @@ class ViewMainPage {
 class Main {
     handleEvent(evt) {
         let sw = this.myf.getElementByEvent(evt);
-        console.log("click en device:" + sw.id);
-        let data = { "id": sw.id, "state": this.view.getSwitchStateById(sw.id) };
-        this.myf.requestPOST("devices", data, this);
+        //Defino e inicializo las URLs para realizar los requests GET al filtrar dispositivos
+        let urlFiltradotodos = 'ws/devices?filter=0';
+        let urlFiltradoLamparas = 'ws/devices?filter=1';
+        let urlFiltradoPersianas = 'ws/devices?filter=2';
+        if (sw.id === "botonTodos") {
+            console.log("Mostrando todos los dispositivos...");
+            this.myf.requestGET(urlFiltradotodos, this);
+        }
+        else if (sw.id === "botonLamparas") {
+            console.log("Mostrando solo las lamparas...");
+            this.myf.requestGET(urlFiltradoLamparas, this);
+        }
+        else if (sw.id === "botonPersianas") {
+            console.log("Mostrando solo las persianas...");
+            this.myf.requestGET(urlFiltradoPersianas, this);
+        }
+        else {
+            let data = { "id": sw.id, "state": this.view.getSwitchStateById(sw.id) };
+            this.myf.requestPOST("devices", data, this);
+        }
     }
     handleGETResponse(status, response) {
         if (status == 200) {
@@ -76,10 +93,24 @@ class Main {
             console.log(response);
         }
     }
+    /**
+     * agregarConfigClick Pasa cada string del array de IDs de elementos HTML como parametro para el
+     * metodo configClick de MyFramework.ts
+     * @param arr_ids array con strings de ids de los elementos HTML
+     */
+    agregarConfigClick(arr_ids) {
+        for (let IdElemento of arr_ids) {
+            this.myf.configClick(IdElemento, this);
+        }
+    }
     main() {
         this.myf = new MyFramework();
         this.view = new ViewMainPage(this.myf);
         this.myf.requestGET("devices", this);
+        //Declaro e inicializo un array con los ids de los botones utilizados para filtrar
+        let arrayIdElementos;
+        arrayIdElementos = ["botonTodos", "botonLamparas", "botonPersianas"];
+        this.agregarConfigClick(arrayIdElementos);
     }
 }
 window.onload = () => {
