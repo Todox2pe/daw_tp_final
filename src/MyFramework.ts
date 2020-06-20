@@ -28,6 +28,17 @@ class MyFramework{
     {
         return <HTMLElement>evt.target;
     }
+
+    /**
+     * configClick: Agrega a un determinado elemento del HTML (identificado por su id) un listener
+     * de evento a la espera de un click
+     * @param id el id del HTMLElement
+     * @param listener el listener del evento
+     */    
+    configClick(id: string, listener: EventListenerObject): void {
+        let b: HTMLElement = this.getElementById(id);
+        b.addEventListener("click", listener);
+    }
  
     /**
      * requestGET Ejecuta un request GET al generarse un determinado evento por un objeto
