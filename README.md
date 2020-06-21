@@ -16,7 +16,7 @@ Previo a la ejecucion de la aplicacion, asegurarse de tener instalado docker y d
 
 Una vez realizado el clone del repositorio y haber descargado la aplicacion, nos ubicamos en el directorio raiz y ejecutamos el siguiente comando:
 ```sh
-docker-compose up
+./correr_aplicacion_sh
 ```
 
 Una vez que los contenedores esten corriendo exitosamente, podremos acceder a la aplicacion desde la siguiente direccion:
