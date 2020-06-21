@@ -16,8 +16,10 @@ Previo a la ejecucion de la aplicacion, asegurarse de tener instalado docker y d
 
 Una vez realizado el clone del repositorio y haber descargado la aplicacion, nos ubicamos en el directorio raiz y ejecutamos el siguiente comando:
 ```sh
-./correr_aplicacion_sh
+docker-compose up
 ```
+
+NOTA: En caso de que al correr por primera vez no logre correr el container nodejs-container exitosamente, terminar el programa con CTRL-C, esperar a que se paren los containers y volver a correr docker-compose up.
 
 Una vez que los contenedores esten corriendo exitosamente, podremos acceder a la aplicacion desde la siguiente direccion:
 ```
