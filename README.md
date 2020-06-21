@@ -6,7 +6,8 @@ La presente aplicación web es un trabajo practico final para la materia "Desarr
 # Descripción
 La aplicación esta compuesta de un front-end (Typescript compilado a Javascript) y un back-end (Node.js + MySql). Su arquitectura es SPA (Single Page Application) con lo cual todos los requests se realizan mediante XMLHTTPRequest al back-end con la finalidad de no volver a cargar la pagina.
 
-El back-end contiene queries SQL ya pre-definidos en caso de que pases ![Roberto Tablas](https://imgs.xkcd.com/comics/exploits_of_a_mom.png) y quiera generarnos un mal dia.
+El back-end contiene queries SQL ya pre-definidos en caso de que pase 
+<a href="https://imgs.xkcd.com/comics/exploits_of_a_mom.png">Roberto Tablas</a> y quiera generarnos un mal dia.
 
 # Correr la aplicación
 Previo a la ejecucion de la aplicacion, asegurarse de tener instalado docker y docker-compose. Caso contrario podran encontrar la documentacion para instalar estas dos herramientas en los siguientes enlaces:
