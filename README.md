@@ -1,4 +1,4 @@
-Autor: Manuel A. Camino - 2020
+Autor: Lic. Manuel A. Camino - 2020
 
 # Introduccion
 La presente aplicación web es un trabajo practico final para la materia "Desarrollo de Aplicaciones Web" de la especializacion en Internet de las Cosas (CEIoT) de la Facultad de Ingenieria de la Universidad de Buenos Aires.
@@ -9,9 +9,18 @@ La aplicación esta compuesta de un front-end (Typescript compilado a Javascript
 El back-end contiene queries SQL ya pre-definidos en caso de que pases ![Roberto Tablas](https://imgs.xkcd.com/comics/exploits_of_a_mom.png) y quiera generarnos un mal dia.
 
 # Correr la aplicación
-Una vez realizado el pull y haber descargado la aplicacion, nos ubicamos en el directorio raiz y ejecutamos el siguiente comando:
+Previo a la ejecucion de la aplicacion, asegurarse de tener instalado docker y docker-compose. Caso contrario podran encontrar la documentacion para instalar estas dos herramientas en los siguientes enlaces:
+- ![DOCKER](https://docs.docker.com/get-docker/)
+- ![DOCKER COMPOSE](https://docs.docker.com/compose/install/)
+
+Una vez realizado el clone del repositorio y haber descargado la aplicacion, nos ubicamos en el directorio raiz y ejecutamos el siguiente comando:
 ```sh
 docker-compose up
+```
+
+Una vez que los contenedores esten corriendo exitosamente, podremos acceder a la aplicacion desde la siguiente direccion:
+```
+http://localhost:8000
 ```
 
 # Agradecimientos
