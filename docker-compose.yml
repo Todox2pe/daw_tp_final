@@ -26,7 +26,7 @@ services:
       - phpmyadmin
     ports:
       - "8000:3000"
-    command: nodemon ws/index.js
+    command: sh -c "sleep 10; nodemon ws/index.js"
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
