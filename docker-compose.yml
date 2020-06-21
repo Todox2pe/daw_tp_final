@@ -1,54 +1,50 @@
 version: '3'
 services:
 
-  service: mysql-server
+  mysql-server:
     image: mysql:5.7
-    hostname: 
-    container_name: 
+    hostname: mysql-server
+    container_name: mysql-server
     restart: always
     environment: 
-      ENV_VAR: value
+      MYSQL_ROOT_PASSWORD: userpass
     volumes: 
-      - host_dir : container_dir
+      - ./db/dumps:/docker-entrypoint-initdb.d
+      - ./db/data:/var/lib/mysql
     networks: 
-      - net-web-app
-    depends_on: 
-      - container_name
-    ports: 
-      - "host_port:container_port"
+      - mysql-net
 
-  service: node-app
-    image: 
-    hostname:
-    container_name:
+  node-app:
+    image: abassi/nodejs-server:10.0-dev
+    hostname: nodejs-container
+    container_name: nodejs-container
+    restart: always
+    volumes:
+      - .:/home/node/app
+    networks:
+      - mysql-net
+    depends_on:
+      - mysql-server
+    ports:
+      - "8000:3000"
+    command: nodemon ws/index.js
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    hostname: phpadmin
+    container_name: phpadmin
     restart: always
     environment:
-      ENV_VAR: value
-    volumes:
-      - host_dir : container_dir
+      PMA_HOST: mysql-server
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: userpass
     networks:
-      - net-web-app
+      - mysql-net
     depends_on:
-      - container_name
+      - mysql-server
     ports:
-      - "host_port:container_port"
-
-  service: phpmyadmin
-    image:
-    hostname:
-    container_name:
-    restart: always
-    environment:
-      ENV_VAR: value
-    volumes:
-      - host_dir : container_dir
-    networks:
-      - net-web-app
-    depends_on:
-      - container_name
-    ports:
-      - "host_port:container_port"
+      - "8085:80"
 
 networks:
-  net-web-app:
+  mysql-net:
     driver: bridge
