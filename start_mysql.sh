@@ -27,4 +27,5 @@ docker run \
 --volume $DATABASE_DIR/data:/var/lib/mysql \
 mysql:5.7
 
+sleep 10
 #########[ Enf of file ]#######################################################
