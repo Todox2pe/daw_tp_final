@@ -27,5 +27,4 @@ docker run \
 --publish $HOST_PORT:80 \
 phpmyadmin/phpmyadmin
 
-sleep 5
 #########[ Enf of file ]#######################################################

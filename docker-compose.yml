@@ -13,6 +13,7 @@ services:
       - ./db/data:/var/lib/mysql
     networks: 
       - mysql-net
+    command: sleep 5
 
   node-app:
     image: abassi/nodejs-server:10.0-dev
