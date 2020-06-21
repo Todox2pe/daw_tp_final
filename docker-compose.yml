@@ -1,0 +1,54 @@
+version: '3'
+services:
+
+  service: mysql-server
+    image: mysql:5.7
+    hostname: 
+    container_name: 
+    restart: always
+    environment: 
+      ENV_VAR: value
+    volumes: 
+      - host_dir : container_dir
+    networks: 
+      - net-web-app
+    depends_on: 
+      - container_name
+    ports: 
+      - "host_port:container_port"
+
+  service: node-app
+    image: 
+    hostname:
+    container_name:
+    restart: always
+    environment:
+      ENV_VAR: value
+    volumes:
+      - host_dir : container_dir
+    networks:
+      - net-web-app
+    depends_on:
+      - container_name
+    ports:
+      - "host_port:container_port"
+
+  service: phpmyadmin
+    image:
+    hostname:
+    container_name:
+    restart: always
+    environment:
+      ENV_VAR: value
+    volumes:
+      - host_dir : container_dir
+    networks:
+      - net-web-app
+    depends_on:
+      - container_name
+    ports:
+      - "host_port:container_port"
+
+networks:
+  net-web-app:
+    driver: bridge
