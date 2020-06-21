@@ -1,6 +1,6 @@
 Autor: Lic. Manuel A. Camino - 2020
 
-# Introduccion
+# Introducción
 La presente aplicación web es un trabajo practico final para la materia "Desarrollo de Aplicaciones Web" de la especializacion en Internet de las Cosas (CEIoT) de la Facultad de Ingenieria de la Universidad de Buenos Aires.
 
 # Descripción
@@ -29,6 +29,7 @@ A los profesores:
 - Ernesto Gigliotti
 - Brian Ducca
 - Agustin Bassi
+
 A mis compañeros de cursada por haberse tomado el tiempo para ayudarme (Y mas por la paciencia)
 
 # Contribuir
