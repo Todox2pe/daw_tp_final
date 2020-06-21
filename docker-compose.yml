@@ -25,6 +25,7 @@ services:
       - mysql-net
     depends_on:
       - mysql-server
+      - phpmyadmin
     ports:
       - "8000:3000"
     command: nodemon ws/index.js
